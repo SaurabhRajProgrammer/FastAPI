@@ -24,5 +24,14 @@ def create_api(var:User):
 @app.put("/users/{user_id}")
 def update_api(user_id:int,var:User,notify:bool = False):
     if user_id < len(users):
-        users[user_id]=User
+        users[user_id]=var
+
+        return {
+            "message":"Users Updated",
+            "notify":notify,
+            "data":var
+        }
+    return {
+        "error":"user not found"
+    }
 
